@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.AboutPageActivity"
+    android:background="@color/white"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="50dp"
+                android:src="@mipmap/ic_launcher"
+                android:id="@+id/about_page_icon"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/about_page_icon"
+                android:text="TianPurse"
+                android:gravity="center|top"
+                android:textSize="36dp"
+                android:textStyle="bold"
+                />
+        </RelativeLayout>
+
+        <ListView
+            android:layout_marginTop="36dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:layoutAnimation="@anim/anim_listview_item"
+            android:id="@+id/about_page_list_view"
+            android:layout_gravity="bottom"
+            android:foregroundGravity="bottom"
+            android:divider="@null"
+            >
+
+        </ListView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:gravity="center"
+            >
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_keyboard_arrow_left_black_24dp"
+                android:id="@+id/about_page_back_icon"
+                />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>

@@ -33,7 +33,7 @@
 
 * 添加过去的条目页面
     * 可以补记过去的条目。
-    * 点击日期回到今天
+    * 点击日期回到今天。
 
 <div align="center">
     <img src="./images/add_custom_record.png" width=50%>
@@ -102,7 +102,7 @@
 </div>
 
 * shortcuts
-    * 几个常用功能添加shortuts。
+    * 几个常用功能添加shortcuts。
     * 最简单的静态添加。
 
 <div align="center">

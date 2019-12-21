@@ -52,4 +52,8 @@ dependencies {
     //easy animation 版本 23以上（必须）
     implementation 'com.willowtreeapps.spruce:spruce-android:1.0.1'
     implementation files('libs/easyandroidanimationslibrary-v0.5.jar')
+    implementation ("com.github.prolificinteractive:material-calendarview:2.0.0") {
+        exclude group: 'com.jakewharton.threetenabp', module: 'threetenabp'
+    }
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.1.1'
 }

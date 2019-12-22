@@ -53,7 +53,7 @@ public class ExpenditureRecentMonthsActivity extends AppCompatActivity {
         }
 
         if (data.isEmpty()){
-            Toast.makeText(getApplicationContext(), "请先做相关记录再来查看统计！",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "請先做相關記錄再來查看統計！",Toast.LENGTH_SHORT).show();
             finish();
         }
 
@@ -68,7 +68,7 @@ public class ExpenditureRecentMonthsActivity extends AppCompatActivity {
                 .format("${%Value}{groupsSeparator: }");
 
         cartesian.animation(true);
-        cartesian.title("最近月份支出统计");
+        cartesian.title("最近月份支出統計");
 
         cartesian.yScale().minimum(0d);
 
@@ -78,7 +78,7 @@ public class ExpenditureRecentMonthsActivity extends AppCompatActivity {
         cartesian.interactivity().hoverMode(HoverMode.BY_X);
 
         cartesian.xAxis(0).title("月份");
-        cartesian.yAxis(0).title("支出金额");
+        cartesian.yAxis(0).title("支出金額");
 
         anyChartView.setChart(cartesian);
     }

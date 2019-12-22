@@ -56,7 +56,7 @@ public class IncomeRecentMonthsActivity extends AppCompatActivity {
         Log.d("Income activity: ", "onCreate: " + data);
 
         if (data.isEmpty()){
-            Toast.makeText(getApplicationContext(), "请先做相关记录再来查看统计！",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "請先做相關記錄再來查看統計！",Toast.LENGTH_SHORT).show();
             finish();
         }
 
@@ -71,7 +71,7 @@ public class IncomeRecentMonthsActivity extends AppCompatActivity {
                 .format("${%Value}{groupsSeparator: }");
 
         cartesian.animation(true);
-        cartesian.title("最近月份收入统计");
+        cartesian.title("最近月份收入統計");
 
         cartesian.yScale().minimum(0d);
 

@@ -82,7 +82,7 @@ public class StatisticsActivity extends AppCompatActivity {
         MoreStatisticItemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"即将到来 ...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"即將到來 ...", Toast.LENGTH_SHORT).show();
             }
         });
     }

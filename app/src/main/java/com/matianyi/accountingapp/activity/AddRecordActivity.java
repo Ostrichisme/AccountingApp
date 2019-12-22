@@ -203,7 +203,7 @@ public class AddRecordActivity extends AppCompatActivity implements View.OnClick
 
                     // Log.d(TAG, "Done! Record: " + record.getUuid() + " " + record.getCategory() + " " + record.getAmount());
                 }else {
-                    Toast.makeText(getApplicationContext(),"钱数不可为0", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"錢數不可為0", Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "onClick: " + userInput);
                 }
             }
@@ -231,7 +231,7 @@ public class AddRecordActivity extends AppCompatActivity implements View.OnClick
             } else if (integerLength > 5 && integerLength <= 7) {
                 GlobalUtil.getInstance().handleTextViewStyle(amountText);
             } else if (integerLength > 7){
-                Toast.makeText(getApplicationContext(), "你哪来的那么多钱？", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "你哪來的那麼多錢？", Toast.LENGTH_SHORT).show();
                 userInput = amountText.getText().toString();
             }
         }

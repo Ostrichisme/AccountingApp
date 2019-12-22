@@ -133,7 +133,7 @@ public class MainFragment extends ABaseFragment implements AdapterView.OnItemLon
     private void showDialog(int index){
         final RecordBean selectedRecords = records.get(index);
 
-        final String[] options = {"删除", "修改"};
+        final String[] options = {"刪除", "修改"};
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 
         builder.create();

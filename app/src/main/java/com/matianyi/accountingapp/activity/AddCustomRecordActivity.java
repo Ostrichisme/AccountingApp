@@ -103,7 +103,7 @@ public class AddCustomRecordActivity extends AppCompatActivity implements View.O
 
                     // Log.d(TAG, "Done! Record: " + record.getUuid() + " " + record.getCategory() + " " + record.getAmount());
                 }else if (userInput.equals("")||userInput.equals("0")){
-                    Toast.makeText(getApplicationContext(),"钱数不可为0", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"錢數不可為0", Toast.LENGTH_SHORT).show();
                     Log.d(TAG, "onClick: record details:"
                             + record.getUuid() + record.getDate() + record.getAmount());
                 }else if (DateUtil.isSelectedDateAfterToday(selectedDate, DateUtil.getFormattedDate())){
@@ -286,7 +286,7 @@ public class AddCustomRecordActivity extends AppCompatActivity implements View.O
             } else if (integerLength > 5 && integerLength <= 7) {
                 GlobalUtil.getInstance().handleTextViewStyle(amountText);
             } else if (integerLength > 7){
-                Toast.makeText(getApplicationContext(), "你哪来的那么多钱？", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "你哪來的那麼多錢？", Toast.LENGTH_SHORT).show();
                 userInput = amountText.getText().toString();
             }
         }

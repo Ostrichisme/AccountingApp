@@ -50,7 +50,7 @@ public class UpdatePageActivity extends Activity {
                 waitingText.setVisibility(View.INVISIBLE);
                 Looper.prepare();
                 Toast.makeText(UpdatePageActivity.this,
-                        "哦豁！你已经是最新版了！", Toast.LENGTH_LONG).show();
+                        "你已經是最新版了！", Toast.LENGTH_LONG).show();
                 finish();
                 Looper.loop();
             }

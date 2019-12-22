@@ -43,7 +43,7 @@ public class GeneralStaticsActivity extends AppCompatActivity {
         setTotalMonths();
 
         if (getTotalMonths() == 0){
-            Toast.makeText(getApplicationContext(), "没有相关记录可以生成统计信息！", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "沒有相關記錄可以生成統計訊息！", Toast.LENGTH_SHORT).show();
             finish();
         }
 
@@ -65,14 +65,14 @@ public class GeneralStaticsActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.general_list_view);
         List<String> statements = new ArrayList<>();
-        statements.add("TianPurse已成为你过去"+ getTotalMonths() + "个月的记账助手.");
+        statements.add("TianPurse已成為你過去"+ getTotalMonths() + "個月的記帳助手.");
         statements.add("在" + DateUtil.convertSqlMonthToCharacter(getMostExpenditureMonth())
-                    + ", 你花掉了最多的钱，达到了￥" + getMostExpenditureMonthAmount() + "元.");
+                    + ", 你花掉了最多的錢,達到了NT$" + getMostExpenditureMonthAmount() + "元.");
         statements.add("在" + DateUtil.convertSqlMonthToCharacter(getMostIncomeMonth())
-                    + ", 你获得了最多的收入，达到了￥" + getMostIncomeMonthAmount() + "元.");
-        statements.add("总体来说， 你在" + getMostExpenditureCategory() + "上花的钱最多，共计￥"
+                    + ", 你獲得了最多的收入,達到了NT$" + getMostIncomeMonthAmount() + "元.");
+        statements.add("總體來說， 你在" + getMostExpenditureCategory() + "上花的錢最多，共計NT$"
                     + getMostExpenditureCategoryAmount() + "元,");
-        statements.add("而在" + getMostIncomeCategory() + "方面获得了最多的收入，共计￥"
+        statements.add("而在" + getMostIncomeCategory() + "方面獲得了最多的收入，共計NT$"
                     + getMostIncomeCategoryAmount() + "元.");
         Log.d(TAG, "onCreate: statements: " + statements);
 
@@ -105,7 +105,7 @@ public class GeneralStaticsActivity extends AppCompatActivity {
                 .stream()
                 .max((Comparator.comparingDouble(Map.Entry::getValue)))
                 .map(Map.Entry::getKey)
-                .orElse("暂无记录");
+                .orElse("暫無記錄");
     }
 
     public String getMostIncomeMonth() {
@@ -124,7 +124,7 @@ public class GeneralStaticsActivity extends AppCompatActivity {
                 .stream()
                 .max((Comparator.comparingDouble(Map.Entry::getValue)))
                 .map(Map.Entry::getKey)
-                .orElse("暂无记录");
+                .orElse("暫無記錄");
     }
 
     public double getMostExpenditureMonthAmount() {
@@ -155,7 +155,7 @@ public class GeneralStaticsActivity extends AppCompatActivity {
                 .stream()
                 .max((Comparator.comparingDouble(Map.Entry::getValue)))
                 .map(Map.Entry::getKey)
-                .orElse("暂无记录");
+                .orElse("暫無記錄");
     }
 
     public String getMostIncomeCategory() {
@@ -170,7 +170,7 @@ public class GeneralStaticsActivity extends AppCompatActivity {
                 .stream()
                 .max((Comparator.comparingDouble(Map.Entry::getValue)))
                 .map(Map.Entry::getKey)
-                .orElse("暂无记录");
+                .orElse("暫無記錄");
     }
 
     public double getMostExpenditureCategoryAmount() {

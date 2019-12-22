@@ -54,7 +54,7 @@ public class MostExpenditureCategoryActivity extends AppCompatActivity {
         }
 
         if (data.isEmpty()){
-            Toast.makeText(getApplicationContext(), "请先做相关记录再来查看统计！",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "請先做相關記錄再來查看統計！",Toast.LENGTH_SHORT).show();
             finish();
         }
 
@@ -62,13 +62,13 @@ public class MostExpenditureCategoryActivity extends AppCompatActivity {
 
         pie.animation(true);
 
-        pie.title("最多支出类型");
+        pie.title("最多支出類型");
 
         pie.labels().position("outside");
 
         pie.legend().title().enabled(true);
         pie.legend().title()
-                .text("数据截至 " + DateUtil.getFormattedDate())
+                .text("數據截至 " + DateUtil.getFormattedDate())
                 .padding(0d, 0d, 60d, 0d);
 
         pie.legend()

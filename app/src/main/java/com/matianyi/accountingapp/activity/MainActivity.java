@@ -171,11 +171,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                             Intent intent1 = new Intent(MainActivity.this, AboutPageActivity.class);
                             startActivity(intent1);
                             break;
-                        case 2:
-                            Log.d(TAG, "onBoomButtonClick: " + 2);
-                            Intent intent2 = new Intent(MainActivity.this, UpdatePageActivity.class);
-                            startActivity(intent2);
-                            break;
                     }
                 })
                 .shadowEffect(true)

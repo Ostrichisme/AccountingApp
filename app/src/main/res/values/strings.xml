@@ -1,24 +1,22 @@
 <resources>
     <string name="app_name">TianPurse</string>
-    <string name="title_statistics">统计</string>
-    <string name="title_about">关于</string>
-    <string name="title_update">更新</string>
-
+    <string name="title_statistics">統計</string>
+    <string name="title_about">關於</string>
     <string name="statistics_total_expenditure">每月支出</string>
     <string name="statistics_total_income">每月收入</string>
 
-    <string name="statistics_most_expenditure_category">支出大头</string>
+    <string name="statistics_most_expenditure_category">支出類型</string>
     <string name="statistics_most_income_category">收入来源</string>
-    <string name="statistics_general">总览</string>
+    <string name="statistics_general">總覽</string>
     <string name="statistics_more">更多</string>
 
-    <string name="add_new_record">记一笔</string>
-    <string name="add_new_record_short">记一笔</string>
-    <string name="add_custom_record">补一笔</string>
-    <string name="add_custom_record_short">补一笔</string>
+    <string name="add_new_record">記一筆</string>
+    <string name="add_new_record_short">記一筆</string>
+    <string name="add_custom_record">補一筆</string>
+    <string name="add_custom_record_short">補一筆</string>
     <string name="shortcut_disable_msg">不可使用</string>
-    <string name="general_stat">总览</string>
-    <string name="general_stat_short">总览</string>
+    <string name="general_stat">總覽</string>
+    <string name="general_stat_short">總覽</string>
 
     <!-- boom menu bar values -->
     <string name="simple_circle_button_example">Simple Circle Button Example</string>

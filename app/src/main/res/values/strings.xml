@@ -17,4 +17,14 @@
     <string name="shortcut_disable_msg">不可使用</string>
     <string name="general_stat">總覽</string>
     <string name="general_stat_short">總覽</string>
+    
+
+
+    <string name="text_inside_circle_button_text_normal">Text Inside Circle Button(Normal)</string>
+
+    <string name="text_outside_circle_button_text_normal">Text Outside Circle Button(Normal)</string>
+
+    <string name="text_ham_button_text_normal">Ham Button Text(Normal)</string>
+    <string name="text_ham_button_sub_text_normal">Ham Button Sub Text(Normal)</string>
+
 </resources>

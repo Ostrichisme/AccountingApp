@@ -13,8 +13,6 @@ import java.util.LinkedList;
 
 public class AboutPageActivity extends AppCompatActivity {
 
-    private static String TAG = "AboutPageActivity";
-
     private ListView listView;
     private AboutPageListViewApapter listViewApapter;
     LinkedList<AboutPageListItemBean> aboutPageListItemBeans;
@@ -48,11 +46,6 @@ public class AboutPageActivity extends AppCompatActivity {
     }
 
     public void handleBack(){
-        findViewById(R.id.about_page_back_icon).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        findViewById(R.id.about_page_back_icon).setOnClickListener(v -> finish());
     }
 }

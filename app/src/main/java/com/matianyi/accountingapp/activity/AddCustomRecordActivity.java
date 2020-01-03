@@ -1,6 +1,5 @@
 package com.matianyi.accountingapp.activity;
 
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,15 +16,13 @@ import com.matianyi.accountingapp.util.DateUtil;
 import com.matianyi.accountingapp.util.GlobalUtil;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
-import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
-
 import org.angmarch.views.NiceSpinner;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-public class AddCustomRecordActivity extends AppCompatActivity implements View.OnClickListener{
+public class AddCustomRecordActivity extends AppCompatActivity implements View.OnClickListener {
 
     private MaterialCalendarView calendarView;
 
@@ -60,128 +57,92 @@ public class AddCustomRecordActivity extends AppCompatActivity implements View.O
         handleCalendar();
         handleListener();
         handleSpinner();
-        handleDot();
         handleClear();
         handleBackSpace();
         handleDone();
     }
 
-    private void handleDone(){
-        findViewById(R.id.c_keyboard_done).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    private void handleDone() {
+        findViewById(R.id.c_keyboard_done).setOnClickListener(v -> {
 
-                if (selectedItem == null){
-                    selectedItem = "支出";
-                    type = 1;
-                }
+            if (selectedItem == null) {
+                selectedItem = "支出";
+                type = 1;
+            }
 
-                Log.d(TAG, "onClick: " + userInput + " no selected date:" + selectedDate + " " + selectedItem + " ");
+            Log.d(TAG, "onClick: " + userInput + " no selected date:" + selectedDate + " " + selectedItem + " ");
 
-                if (!userInput.equals("")&&!userInput.equals("0")&&!DateUtil.isSelectedDateAfterToday(selectedDate, DateUtil.getFormattedDate())){
-                    double amount = Double.valueOf(userInput);
+            if (!userInput.equals("") && !userInput.equals("0") && !DateUtil.isSelectedDateAfterToday(selectedDate, DateUtil.getFormattedDate())) {
+                double amount = Double.valueOf(userInput);
 
-                    record.setAmount(amount);
+                record.setAmount(amount);
 
-                    record.setDate(selectedDate);
+                record.setDate(selectedDate);
 
-                    record.setTimeStamp(System.currentTimeMillis());
+                record.setTimeStamp(System.currentTimeMillis());
 
-                    record.setCategory(selectedItem);
-                    record.setRemark(selectedItem);
-                    record.setType(type);
+                record.setCategory(selectedItem);
+                record.setRemark(selectedItem);
+                record.setType(type);
 
-                    Log.d(TAG, "onClick: record details:"
-                            + record.getUuid() + record.getCategory() + record.getAmount());
+                Log.d(TAG, "onClick: record details:"
+                        + record.getUuid() + record.getCategory() + record.getAmount());
 
 
-                    Toast.makeText(getApplicationContext(),"完成", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "完成", Toast.LENGTH_SHORT).show();
 
-                    GlobalUtil.getInstance().databaseHelper.addRecord(record);
+                GlobalUtil.getInstance().databaseHelper.addRecord(record);
 
-                    finish();
+                finish();
 
-                    // Log.d(TAG, "Done! Record: " + record.getUuid() + " " + record.getCategory() + " " + record.getAmount());
-                }else if (userInput.equals("")||userInput.equals("0")){
-                    Toast.makeText(getApplicationContext(),"錢數不可為0", Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "onClick: record details:"
-                            + record.getUuid() + record.getDate() + record.getAmount());
-                }else if (DateUtil.isSelectedDateAfterToday(selectedDate, DateUtil.getFormattedDate())){
-                    Toast.makeText(getApplicationContext(), "明日未知", Toast.LENGTH_SHORT).show();
-                }
+                // Log.d(TAG, "Done! Record: " + record.getUuid() + " " + record.getCategory() + " " + record.getAmount());
+            } else if (userInput.equals("") || userInput.equals("0")) {
+                Toast.makeText(getApplicationContext(), "錢數不可為0", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "onClick: record details:"
+                        + record.getUuid() + record.getDate() + record.getAmount());
+            } else if (DateUtil.isSelectedDateAfterToday(selectedDate, DateUtil.getFormattedDate())) {
+                Toast.makeText(getApplicationContext(), "明日未知", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void handleBackSpace(){
-        findViewById(R.id.c_keyboard_backspace).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (userInput.length() > 0){
-                    userInput = userInput.substring(0, userInput.length() - 1);
-                }
-                // 如果最后一位是小数点，直接删除
-                if (userInput.length() > 0 && userInput.charAt(userInput.length() - 1) == '.') {
-                    userInput = userInput.substring(0, userInput.length() - 1);
-                }
-                // 恢复大小
-                if (userInput.equals("")){
-                    amountText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 36);
-                }
-                updateAmountText();
+    private void handleBackSpace() {
+        findViewById(R.id.c_keyboard_backspace).setOnClickListener(v -> {
+            if (userInput.length() > 0) {
+                userInput = userInput.substring(0, userInput.length() - 1);
             }
-        });
-    }
 
-    private void handleClear(){
-        findViewById(R.id.c_keyboard_clear).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                userInput="";
-                updateAmountText();
+            // 恢复大小
+            if (userInput.equals("")) {
                 amountText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 36);
             }
+            updateAmountText();
+        });
+    }
+
+    private void handleClear() {
+        findViewById(R.id.c_keyboard_clear).setOnClickListener(v -> {
+            userInput = "";
+            updateAmountText();
+            amountText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 36);
         });
     }
 
     // 更新数字面板
-    private void updateAmountText(){
+    private void updateAmountText() {
         Log.d(TAG, "UserInput is : " + userInput);
 
-        if (userInput.contains(".")){
-            // 输入中包含小数点
-            if (userInput.split("\\.").length == 1){ // 11.这种情况
-                amountText.setText(userInput + "00");
-            }else if (userInput.split("\\.")[1].length() == 1){ // 11.1
-                amountText.setText(userInput + "0");
-            }else if (userInput.split("\\.")[1].length() == 2){ // 11.11
-                amountText.setText(userInput);
-            }
-        }else{ // 处理整数
-            if (userInput.equals("")){
-                amountText.setText("0.00");
-            }else {
-                amountText.setText(userInput + ".00");
-            }
+
+        if (userInput.equals("")) {
+            amountText.setText("0");
+        } else {
+            amountText.setText(userInput);
         }
+
     }
 
-    private void handleDot(){
-        findViewById(R.id.c_keyboard_dot).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO 解决直接按下dot+数字，数组越界闪退
-                Log.d(TAG, "dot clicked!");
 
-                // 避免出现多个小数点
-                if (!userInput.contains(".")){
-                    userInput += ".";
-                }
-            }
-        });
-    }
-
-    private void handleView(){
+    private void handleView() {
         amountText = findViewById(R.id.custom_add_amount_text);
         dateLayout = findViewById(R.id.selected_date_layout);
         // 点击该视图时回到今天
@@ -192,7 +153,7 @@ public class AddCustomRecordActivity extends AppCompatActivity implements View.O
         });
     }
 
-    private void handleListener(){
+    private void handleListener() {
         findViewById(R.id.c_keyboard_one).setOnClickListener(this);
         findViewById(R.id.c_keyboard_two).setOnClickListener(this);
         findViewById(R.id.c_keyboard_three).setOnClickListener(this);
@@ -205,7 +166,7 @@ public class AddCustomRecordActivity extends AppCompatActivity implements View.O
         findViewById(R.id.c_keyboard_zero).setOnClickListener(this);
     }
 
-    private void handleCalendar(){
+    private void handleCalendar() {
         calendarView.setSelectedDate(CalendarDay.today());
 
         selectedDate = DateUtil.getFormattedDate();
@@ -222,7 +183,7 @@ public class AddCustomRecordActivity extends AppCompatActivity implements View.O
         });
     }
 
-    private void handleSpinner(){
+    private void handleSpinner() {
         niceSpinner = findViewById(R.id.custom_add_category_spinner);
 
         dataSet = new LinkedList<>(Arrays.asList(GlobalUtil.ExpenditureCategories));
@@ -237,13 +198,13 @@ public class AddCustomRecordActivity extends AppCompatActivity implements View.O
                 niceSpinner.getSelectedItem();
                 selectedItem = niceSpinner.getSelectedItem().toString();
 
-                if (Arrays.asList(GlobalUtil.ExpenditureCategories).contains(selectedItem)){
+                if (Arrays.asList(GlobalUtil.ExpenditureCategories).contains(selectedItem)) {
                     type = 1;
-                }else {
+                } else {
                     type = 2;
                 }
 
-                Log.d(TAG, "onItemSelected: selctedItem: " + selectedItem + " type:" + type);
+                Log.d(TAG, "onItemSelected: selectedItem: " + selectedItem + " type:" + type);
             }
 
             @Override
@@ -251,9 +212,9 @@ public class AddCustomRecordActivity extends AppCompatActivity implements View.O
                 niceSpinner.setSelectedIndex(0);
                 selectedItem = niceSpinner.getSelectedItem().toString();
 
-                if (Arrays.asList(GlobalUtil.ExpenditureCategories).contains(selectedItem)){
+                if (Arrays.asList(GlobalUtil.ExpenditureCategories).contains(selectedItem)) {
                     type = 1;
-                }else {
+                } else {
                     type = 2;
                 }
 
@@ -269,37 +230,21 @@ public class AddCustomRecordActivity extends AppCompatActivity implements View.O
     public void onClick(View v) {
         Button button = (Button) v;
         String input = button.getText().toString();
-        // Log.d(TAG,"Click " + input);
-
-        // 解决一开始就按下.的问题
-        if (userInput.startsWith(".")){
-            userInput = "0.";
-        }
-        int integerLength = 0;
 
         // 处理过大数据的输入问题
-        if (!userInput.contains(".")) {
-            integerLength = userInput.length();
-            Log.d(TAG, "onClick: integer: " + integerLength);
-            if (integerLength >= 3 && integerLength <= 5) {
-                GlobalUtil.getInstance().handleTextViewStyle(amountText);
-            } else if (integerLength > 5 && integerLength <= 7) {
-                GlobalUtil.getInstance().handleTextViewStyle(amountText);
-            } else if (integerLength > 7){
-                Toast.makeText(getApplicationContext(), "你哪來的那麼多錢？", Toast.LENGTH_SHORT).show();
-                userInput = amountText.getText().toString();
-            }
+
+        int integerLength = userInput.length();
+        Log.d(TAG, "onClick: integer: " + integerLength);
+        if (integerLength >= 3 && integerLength <= 5) {
+            GlobalUtil.getInstance().handleTextViewStyle(amountText);
+        } else if (integerLength > 5 && integerLength <= 7) {
+            GlobalUtil.getInstance().handleTextViewStyle(amountText);
+        } else if (integerLength > 7) {
+            Toast.makeText(getApplicationContext(), "你哪來的那麼多錢？", Toast.LENGTH_SHORT).show();
+            userInput = amountText.getText().toString();
         }
 
-        // 小数点之后只能有两位
-        if (userInput.contains(".")){
-            if (userInput.split("\\.").length == 1
-                    || userInput.split("\\.")[1].length() < 2)
-                userInput += input;
-        }else{
-            userInput += input;
-        }
-
+        userInput += input;
         updateAmountText();
 
     }

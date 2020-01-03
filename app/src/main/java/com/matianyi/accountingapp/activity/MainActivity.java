@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         pagerAdapter.notifyDataSetChanged();
         viewPager.setAdapter(pagerAdapter);
 
-        viewPager.setOnPageChangeListener(this);
+        viewPager.addOnPageChangeListener(this);
 
         // 让用户打开时显示最后一天
         viewPager.setCurrentItem(pagerAdapter.getLastIndex());
@@ -109,14 +109,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                 return new ClassicsHeader(context);//.setTimeFormat(new DynamicTimeFormat("更新于 %s"));//指定为经典Header，默认是 贝塞尔雷达Header
             }
         });
-//        //设置全局的Footer构建器
-//        SmartRefreshLayout.setDefaultRefreshFooterCreator(new DefaultRefreshFooterCreator() {
-//            @Override
-//            public RefreshFooter createRefreshFooter(Context context, RefreshLayout layout) {
-//                //指定为经典Footer，默认是 BallPulseFooter
-//                return new ClassicsFooter(context).setDrawableSize(20);
-//            }
-//        });
+
     }
 
 
@@ -143,13 +136,12 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         ((Toolbar) actionBar.getParent()).setContentInsetsAbsolute(0,0);
 
         //BoomMenuButton leftBmb = (BoomMenuButton) actionBar.findViewById(R.id.action_bar_left_bmb);
-        rightBmb = (BoomMenuButton) actionBar.findViewById(R.id.action_bar_right_bmb);
+        rightBmb = actionBar.findViewById(R.id.action_bar_right_bmb);
 
         rightBmb.setButtonEnum(ButtonEnum.Ham);
         rightBmb.setPiecePlaceEnum(PiecePlaceEnum.HAM_3);
         rightBmb.setButtonPlaceEnum(ButtonPlaceEnum.HAM_3);
         for (int i = 0; i < rightBmb.getPiecePlaceEnum().pieceNumber(); i++)
-            //rightBmb.addBuilder(BuilderManager.getHamButtonBuilder());
             //自定义添加方法
             addBuilder();
     }
@@ -184,23 +176,17 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     protected void handleFab(){
         // 为+按钮设置启动activity
-        findViewById(R.id.floating_add_button).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AddRecordActivity.class);
-                startActivityForResult(intent, 1);
+        findViewById(R.id.floating_add_button).setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, AddRecordActivity.class);
+            startActivityForResult(intent, 1);
 
-            }
         });
 
         // 为+按钮设置长按选项
-        findViewById(R.id.floating_add_button).setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AddCustomRecordActivity.class);
-                startActivityForResult(intent, 2);
-                return true;
-            }
+        findViewById(R.id.floating_add_button).setOnLongClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, AddCustomRecordActivity.class);
+            startActivityForResult(intent, 2);
+            return true;
         });
     }
 
@@ -208,8 +194,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
-//            pagerAdapter.reload();
-//            updateHeader();
             refreshSelf();
         }
 
@@ -230,6 +214,11 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         updateHeader();
     }
 
+    @Override
+    public void onPageScrollStateChanged(int i) {
+
+    }
+
     public void updateHeader(){
         String amount = String.valueOf(pagerAdapter.getTotalCost(currentPagePosition));
         String incomeAmount = String.valueOf(pagerAdapter.getTotalIncom(currentPagePosition));
@@ -240,34 +229,21 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         dateText.setText(DateUtil.getWeekDay(date));
     }
 
-    @Override
-    public void onPageScrollStateChanged(int i) {
-
-    }
 
     // 按下返回键时将应用放在后台
     // 解决fab重复添加的问题
     @Override
     public void onBackPressed() {
-        // super.onBackPressed();
         moveTaskToBack(true);
     }
 
     public void handleRefreshView(){
         refreshLayout = findViewById(R.id.refresh_layout);
-        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(RefreshLayout refreshlayout) {
-                refreshlayout.finishRefresh(500/*,false*/);//传入false表示刷新失败
-                refreshSelf();
-            }
+        refreshLayout.setOnRefreshListener(refreshlayout -> {
+            refreshlayout.finishRefresh(500/*,false*/);//传入false表示刷新失败
+            refreshSelf();
         });
-        /*refreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void onLoadMore(RefreshLayout refreshlayout) {
-                refreshlayout.finishLoadMore(300*//*,false*//*);//传入false表示加载失败
-            }
-        });*/
+
     }
 
     public void refreshSelf(){

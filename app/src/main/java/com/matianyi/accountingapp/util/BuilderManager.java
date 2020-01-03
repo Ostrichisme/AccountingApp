@@ -25,15 +25,13 @@ public class BuilderManager {
 
     private static int[] imageResources = new int[]{
             R.drawable.menu_stat,
-            R.drawable.menu_about,
-            R.drawable.menu_update,
+            R.drawable.menu_about
     };
 
     private static int[] textResources = new int[]{
             R.string.title_statistics,
-            R.string.title_about,
-            R.string.title_update,
-    };
+            R.string.title_about
+};
 
     private static int imageResourceIndex = 0;
 

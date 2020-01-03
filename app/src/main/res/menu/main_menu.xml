@@ -17,7 +17,7 @@
     <item
         android:id="@+id/navigation_update"
         android:icon="@drawable/ic_system_update_alt_black_24dp"
-        android:title="@string/title_update"
+        android:title="ss"
         />
 
 </menu>

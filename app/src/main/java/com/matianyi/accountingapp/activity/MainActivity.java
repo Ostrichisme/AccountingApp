@@ -139,11 +139,14 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         rightBmb = actionBar.findViewById(R.id.action_bar_right_bmb);
 
         rightBmb.setButtonEnum(ButtonEnum.Ham);
-        rightBmb.setPiecePlaceEnum(PiecePlaceEnum.HAM_3);
-        rightBmb.setButtonPlaceEnum(ButtonPlaceEnum.HAM_3);
-        for (int i = 0; i < rightBmb.getPiecePlaceEnum().pieceNumber(); i++)
+        rightBmb.setPiecePlaceEnum(PiecePlaceEnum.HAM_2);
+        rightBmb.setButtonPlaceEnum(ButtonPlaceEnum.HAM_2);
+        for (int i = 0; i < rightBmb.getPiecePlaceEnum().pieceNumber(); i++) {
             //自定义添加方法
             addBuilder();
+
+        }
+
     }
 
     // 菜单builder

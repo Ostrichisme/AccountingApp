@@ -28,27 +28,4 @@
         android:elevation="10dp"
         />
 
-    <!--
-
-    <LinearLayout
-        android:gravity="bottom"
-        android:layout_marginStart="16dp"
-        android:layout_toEndOf="@+id/about_page_item_icon"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:elevation="10dp"
-        >
-        <TextView
-            android:id="@+id/about_page_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="author info"
-            android:textSize="36sp"
-            android:gravity="bottom"
-            android:layout_gravity="bottom"
-            android:textColor="@color/colorPrimary_text"
-            />
-    </LinearLayout>
-    -->
 </RelativeLayout>

@@ -1,6 +1,5 @@
 package com.matianyi.accountingapp.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.Nullable;
@@ -29,18 +28,14 @@ import com.nightonke.boommenu.Piece.PiecePlaceEnum;
 import com.robinhood.ticker.TickerUtils;
 import com.robinhood.ticker.TickerView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
-import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 
 public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
     
     private static final String TAG = "MainActivity";
 
-    private ViewPager viewPager;
     private MainViewPagerAdapter pagerAdapter;
 
     private TickerView expenditureAmountText;
@@ -77,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         // 设置日期显示
         dateText = findViewById(R.id.date_text);
 
-        viewPager = findViewById(R.id.view_pager);
+        ViewPager viewPager = findViewById(R.id.view_pager);
         pagerAdapter = new MainViewPagerAdapter(getSupportFragmentManager());
         pagerAdapter.notifyDataSetChanged();
         viewPager.setAdapter(pagerAdapter);
@@ -102,12 +97,9 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     // smart refresh
     static {
         //设置全局的Header构建器
-        SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
-            @Override
-            public RefreshHeader createRefreshHeader(Context context, RefreshLayout layout) {
-                layout.setPrimaryColorsId(R.color.colorPrimary, android.R.color.white);//全局设置主题颜色
-                return new ClassicsHeader(context);//.setTimeFormat(new DynamicTimeFormat("更新于 %s"));//指定为经典Header，默认是 贝塞尔雷达Header
-            }
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator((context, layout) -> {
+            layout.setPrimaryColorsId(R.color.colorPrimary, android.R.color.white);//全局设置主题颜色
+            return new ClassicsHeader(context);//.setTimeFormat(new DynamicTimeFormat("更新于 %s"));//指定为经典Header，默认是 贝塞尔雷达Header
         });
 
     }
@@ -128,14 +120,14 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         mActionBar.setDisplayShowTitleEnabled(false);
         LayoutInflater mInflater = LayoutInflater.from(this);
 
-        View actionBar = mInflater.inflate(R.layout.custom_actionbar, null);
-        TextView mTitleTextView = (TextView) actionBar.findViewById(R.id.title_text);
+        View actionBar;
+        actionBar = mInflater.inflate(R.layout.custom_actionbar, null);
+        TextView mTitleTextView = actionBar.findViewById(R.id.title_text);
         mTitleTextView.setText("今日");
         mActionBar.setCustomView(actionBar);
         mActionBar.setDisplayShowCustomEnabled(true);
         ((Toolbar) actionBar.getParent()).setContentInsetsAbsolute(0,0);
 
-        //BoomMenuButton leftBmb = (BoomMenuButton) actionBar.findViewById(R.id.action_bar_left_bmb);
         rightBmb = actionBar.findViewById(R.id.action_bar_right_bmb);
 
         rightBmb.setButtonEnum(ButtonEnum.Ham);

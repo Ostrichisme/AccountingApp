@@ -24,8 +24,6 @@ import java.util.List;
 
 public class ExpenditureRecentMonthsActivity extends AppCompatActivity {
 
-    // 进行统计的月份，用作x轴
-    private ArrayList<String> availableMonths = new ArrayList<>();
     // 进行统计的每月消费，用作y轴
 
     @Override
@@ -41,7 +39,8 @@ public class ExpenditureRecentMonthsActivity extends AppCompatActivity {
         List<DataEntry> data = new ArrayList<>();
 
         // 获取可用月份
-        availableMonths = GlobalUtil.getInstance().databaseHelper.getAvailableMonths();
+        // 进行统计的月份，用作x轴
+        ArrayList<String> availableMonths = GlobalUtil.getInstance().databaseHelper.getAvailableMonths();
         // 将月份排序
         Collections.sort(availableMonths);
         // 给坐标点赋值

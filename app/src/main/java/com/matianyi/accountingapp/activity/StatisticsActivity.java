@@ -11,7 +11,7 @@ import com.matianyi.accountingapp.R;
 
 public class StatisticsActivity extends AppCompatActivity {
     
-    private static final String TAG = "StatisticsActivity";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,61 +29,41 @@ public class StatisticsActivity extends AppCompatActivity {
         // 为选项设置监听事件
         // 总体
         final View GeneralView = findViewById(R.id.general_statistics);
-        GeneralView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(StatisticsActivity.this, GeneralStaticsActivity.class);
-                startActivity(intent);
-            }
+        GeneralView.setOnClickListener(v -> {
+            Intent intent = new Intent(StatisticsActivity.this, GeneralStaticsActivity.class);
+            startActivity(intent);
         });
         // 总支出
         final View ExpenditureRecentMonthsView = findViewById(R.id.cost_recent_months_layout);
-        ExpenditureRecentMonthsView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(StatisticsActivity.this, ExpenditureRecentMonthsActivity.class);
-                startActivity(intent);
-            }
+        ExpenditureRecentMonthsView.setOnClickListener(v -> {
+            Intent intent = new Intent(StatisticsActivity.this, ExpenditureRecentMonthsActivity.class);
+            startActivity(intent);
         });
 
         // 支出类别
         final View MostExpenditureCategoryView = findViewById(R.id.statistic_most_expenditure_layout);
-        MostExpenditureCategoryView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(StatisticsActivity.this, MostExpenditureCategoryActivity.class);
-                startActivity(intent);
-            }
+        MostExpenditureCategoryView.setOnClickListener(v -> {
+            Intent intent = new Intent(StatisticsActivity.this, MostExpenditureCategoryActivity.class);
+            startActivity(intent);
         });
 
         // 总收入
         final View IncomeRecentMonthsView = findViewById(R.id.income_recent_months_layout);
-        IncomeRecentMonthsView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(StatisticsActivity.this, IncomeRecentMonthsActivity.class);
-                startActivity(intent);
-            }
+        IncomeRecentMonthsView.setOnClickListener(v -> {
+            Intent intent = new Intent(StatisticsActivity.this, IncomeRecentMonthsActivity.class);
+            startActivity(intent);
         });
 
         // 收入类别
         final View MostIncomeCategoryView = findViewById(R.id.statistic_most_income_category);
-        MostIncomeCategoryView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(StatisticsActivity.this, MostIncomeCategoryActivity.class);
-                startActivity(intent);
-            }
+        MostIncomeCategoryView.setOnClickListener(v -> {
+            Intent intent = new Intent(StatisticsActivity.this, MostIncomeCategoryActivity.class);
+            startActivity(intent);
         });
 
 
         // 更多
         final View MoreStatisticItemView = findViewById(R.id.more_statistic_item_layout);
-        MoreStatisticItemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"即將到來 ...", Toast.LENGTH_SHORT).show();
-            }
-        });
+        MoreStatisticItemView.setOnClickListener(v -> Toast.makeText(getApplicationContext(),"即將到來 ...", Toast.LENGTH_SHORT).show());
     }
 }

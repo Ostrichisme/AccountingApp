@@ -11,8 +11,6 @@ import java.util.TimerTask;
 
 public class StartScreenActivity extends Activity {
 
-    private Timer mTimer;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +19,7 @@ public class StartScreenActivity extends Activity {
     }
 
     private void init() {
-        mTimer = new Timer();
+        Timer mTimer = new Timer();
         mTimer.schedule(new TimerTask() {
             @Override
             public void run() {

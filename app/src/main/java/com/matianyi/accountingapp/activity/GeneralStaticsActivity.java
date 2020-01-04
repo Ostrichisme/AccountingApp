@@ -29,9 +29,6 @@ public class GeneralStaticsActivity extends AppCompatActivity {
     private double mostExpenditureCategoryAmount;
     private double mostIncomeCategoryAmount;
 
-    private GeneralStatisticListViewAdapter listViewAdapter;
-    private ListView listView;
-
 
     private static final String TAG = "GeneralStatisticActivity";
 
@@ -63,7 +60,7 @@ public class GeneralStaticsActivity extends AppCompatActivity {
 
         setMostIncomeCategoryAmount();
 
-        listView = findViewById(R.id.general_list_view);
+        ListView listView = findViewById(R.id.general_list_view);
         List<String> statements = new ArrayList<>();
         statements.add("TianPurse已成為你過去"+ getTotalMonths() + "個月的記帳助手.");
         statements.add("在" + DateUtil.convertSqlMonthToCharacter(getMostExpenditureMonth())
@@ -76,7 +73,7 @@ public class GeneralStaticsActivity extends AppCompatActivity {
                     + getMostIncomeCategoryAmount() + "元.");
         Log.d(TAG, "onCreate: statements: " + statements);
 
-        listViewAdapter = new GeneralStatisticListViewAdapter(statements, GeneralStaticsActivity.this);
+        GeneralStatisticListViewAdapter listViewAdapter = new GeneralStatisticListViewAdapter(statements, GeneralStaticsActivity.this);
         listView.setAdapter(listViewAdapter);
     }
 
@@ -148,7 +145,7 @@ public class GeneralStaticsActivity extends AppCompatActivity {
     }
 
     public void setMostExpenditureCategory() {
-        Map<String, Double> categoryAndAmount = new HashMap<>();
+        Map<String, Double> categoryAndAmount;
         categoryAndAmount = GlobalUtil.getInstance().databaseHelper.getMostExpenditureCategory();
 
         this.mostExpenditureCategory = categoryAndAmount.entrySet()
@@ -163,8 +160,7 @@ public class GeneralStaticsActivity extends AppCompatActivity {
     }
 
     public void setMostIncomeCategory() {
-        Map<String, Double> categoryAndAmount = new HashMap<>();
-        categoryAndAmount = GlobalUtil.getInstance().databaseHelper.getMostIncomeCategory();
+        Map<String, Double> categoryAndAmount = GlobalUtil.getInstance().databaseHelper.getMostIncomeCategory();
 
         this.mostIncomeCategory = categoryAndAmount.entrySet()
                 .stream()

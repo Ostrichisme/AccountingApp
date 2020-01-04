@@ -30,7 +30,6 @@ public class AddRecordActivity extends AppCompatActivity implements OnClickListe
 
     private TextView amountText;
 
-    private RecyclerView recyclerView;
     private CategoryRecyclerAdapter recyclerAdapter;
 
     private String category = "支出";
@@ -43,7 +42,6 @@ public class AddRecordActivity extends AppCompatActivity implements OnClickListe
 
     private int flag = 1;
 
-    private boolean dotClicked = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +72,7 @@ public class AddRecordActivity extends AppCompatActivity implements OnClickListe
 
 
         // 设置recycler view
-        recyclerView = findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerAdapter = new CategoryRecyclerAdapter(getApplicationContext());
         recyclerView.setAdapter(recyclerAdapter);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 4);
@@ -100,7 +98,6 @@ public class AddRecordActivity extends AppCompatActivity implements OnClickListe
     private void handleClear() {
         findViewById(R.id.keyboard_clear).setOnClickListener(v -> {
             userInput = "";
-            dotClicked = false;
             updateAmountText();
             amountText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 60);
         });

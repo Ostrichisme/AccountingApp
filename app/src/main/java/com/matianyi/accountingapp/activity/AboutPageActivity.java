@@ -2,7 +2,6 @@ package com.matianyi.accountingapp.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ListView;
 
 import com.matianyi.accountingapp.R;
@@ -13,8 +12,6 @@ import java.util.LinkedList;
 
 public class AboutPageActivity extends AppCompatActivity {
 
-    private ListView listView;
-    private AboutPageListViewApapter listViewApapter;
     LinkedList<AboutPageListItemBean> aboutPageListItemBeans;
     LinkedList<Integer> iconResources;
     LinkedList<String> info;
@@ -25,7 +22,7 @@ public class AboutPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_page);
 
-        listView = findViewById(R.id.about_page_list_view);
+        ListView listView = findViewById(R.id.about_page_list_view);
         aboutPageListItemBeans = new LinkedList<>();
         iconResources = new LinkedList<>();
         iconResources.add(R.drawable.person_item);
@@ -40,7 +37,7 @@ public class AboutPageActivity extends AppCompatActivity {
             aboutPageListItemBeans.add(aboutPageListItemBean);
         }
 
-        listViewApapter = new AboutPageListViewApapter(aboutPageListItemBeans, AboutPageActivity.this);
+        AboutPageListViewApapter listViewApapter = new AboutPageListViewApapter(aboutPageListItemBeans, AboutPageActivity.this);
         listView.setAdapter(listViewApapter);
         handleBack();
     }

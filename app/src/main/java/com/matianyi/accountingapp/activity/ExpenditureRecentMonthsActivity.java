@@ -27,7 +27,6 @@ public class ExpenditureRecentMonthsActivity extends AppCompatActivity {
     // 进行统计的月份，用作x轴
     private ArrayList<String> availableMonths = new ArrayList<>();
     // 进行统计的每月消费，用作y轴
-    private ArrayList<Double> costEveryMonth = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -11,7 +11,6 @@ import com.matianyi.accountingapp.util.GlobalUtil;
 import java.util.LinkedList;
 
 public class MainViewPagerAdapter extends FragmentPagerAdapter {
-    private static final String TAG = "MainViewPagerAdapter";
 
     LinkedList<MainFragment> fragments = new LinkedList<>();
 
@@ -26,7 +25,6 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
 
         dates =  GlobalUtil.getInstance().databaseHelper.getAvailableDate();
 
-        //Log.d(TAG, "initFragments: " + dates);
 
         if (!dates.contains(DateUtil.getFormattedDate())){
             dates.addLast(DateUtil.getFormattedDate());
@@ -43,11 +41,6 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
         return getCount() - 1;
     }
 
-    public void reload(){
-        for (MainFragment fragment : fragments){
-            fragment.reload();
-        }
-    }
 
     @Override
     public Fragment getItem(int i) {

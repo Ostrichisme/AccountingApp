@@ -22,17 +22,14 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryViewHo
     public static final String TAG = "RecyclerAdapter";
 
     private LayoutInflater mInflater;
-    private Context mContext;
 
-    public LinkedList<CategoryResBean> cellList;
+    private LinkedList<CategoryResBean> cellList;
 
     public String getSelected() {
         return selected;
     }
 
-    private String selected="";
-
-    CategoryViewHolder myViewHolder;
+    private String selected;
 
     public boolean tag = true;
 
@@ -44,8 +41,7 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryViewHo
 
     public CategoryRecyclerAdapter(Context context){
         // GlobalUtil.getInstance().setContext(context);
-        this.mContext = context;
-        mInflater = LayoutInflater.from(mContext);
+        mInflater = LayoutInflater.from(context);
 
         cellList = GlobalUtil.getInstance().costRes;
         if (cellList.size() > 20){
@@ -57,13 +53,13 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryViewHo
 
     }
 
+    @NonNull
     @Override
     public CategoryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // Log.d(TAG, "onCreateViewHolder: " + "create, " + "viewType = " + viewType);
-        View view = mInflater.inflate(R.layout.cell_category,parent,false);
-        myViewHolder = new CategoryViewHolder(view);
+        View view;
+        view = mInflater.inflate(R.layout.cell_category,parent,false);
 
-        return myViewHolder;
+        return new CategoryViewHolder(view);
     }
 
     @Override
@@ -73,17 +69,14 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryViewHo
 
         holder.imageView.setImageResource(res.resBlack);
         holder.textView.setText(res.title);
-        holder.imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selected = res.title;
-                notifyDataSetChanged();
+        holder.imageView.setOnClickListener(v -> {
+            selected = res.title;
+            notifyDataSetChanged();
 
-                if (onCategoryClickListener!=null){
-                    onCategoryClickListener.onClick(res.title);
-                }
-
+            if (onCategoryClickListener!=null){
+                onCategoryClickListener.onClick(res.title);
             }
+
         });
 
         if (holder.textView.getText().toString().equals(selected)){
@@ -135,10 +128,10 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryViewHo
 class CategoryViewHolder extends RecyclerView.ViewHolder{
 
     public RelativeLayout background;
-    public ImageView imageView;
-    public TextView textView;
+    ImageView imageView;
+    TextView textView;
 
-    public CategoryViewHolder(View itemView) {
+    CategoryViewHolder(View itemView) {
         super(itemView);
         background = itemView.findViewById(R.id.cell_background);
         imageView = itemView.findViewById(R.id.imageView_category);

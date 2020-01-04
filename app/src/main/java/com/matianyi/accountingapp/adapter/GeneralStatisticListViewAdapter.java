@@ -15,7 +15,6 @@ public class GeneralStatisticListViewAdapter extends BaseAdapter {
 
     private List<String> statements;
     private LayoutInflater inflater;
-    public GeneralStatisticListViewAdapter(){}
 
     public GeneralStatisticListViewAdapter(List<String> statements, Context context){
         this.statements = statements;
@@ -40,7 +39,6 @@ public class GeneralStatisticListViewAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = inflater.inflate(R.layout.general_statistic_cell_list_view, null);
-        String statement = getItem(position);
         TextView textView = view.findViewById(R.id.textView_statements);
         textView.setText(getItem(position));
         return view;

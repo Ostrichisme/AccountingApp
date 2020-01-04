@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import com.matianyi.accountingapp.R;
-import com.matianyi.accountingapp.adapter.AboutPageListViewApapter;
+import com.matianyi.accountingapp.adapter.AboutPageListViewAdapter;
 import com.matianyi.accountingapp.bean.AboutPageListItemBean;
 
 import java.util.LinkedList;
@@ -37,7 +37,7 @@ public class AboutPageActivity extends AppCompatActivity {
             aboutPageListItemBeans.add(aboutPageListItemBean);
         }
 
-        AboutPageListViewApapter listViewApapter = new AboutPageListViewApapter(aboutPageListItemBeans, AboutPageActivity.this);
+        AboutPageListViewAdapter listViewApapter = new AboutPageListViewAdapter(aboutPageListItemBeans, AboutPageActivity.this);
         listView.setAdapter(listViewApapter);
         handleBack();
     }

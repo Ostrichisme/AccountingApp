@@ -14,13 +14,12 @@ import com.matianyi.accountingapp.bean.AboutPageListItemBean;
 
 import java.util.List;
 
-public class AboutPageListViewApapter extends BaseAdapter {
+public class AboutPageListViewAdapter extends BaseAdapter {
 
     private List<AboutPageListItemBean> aboutPageListItemBeans;
     private LayoutInflater inflater;
-    public AboutPageListViewApapter(){}
 
-    public AboutPageListViewApapter(List<AboutPageListItemBean> aboutPageListItemBeans, Context context){
+    public AboutPageListViewAdapter(List<AboutPageListItemBean> aboutPageListItemBeans, Context context){
         this.aboutPageListItemBeans = aboutPageListItemBeans;
         this.inflater = LayoutInflater.from(context);
     }

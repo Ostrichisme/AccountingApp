@@ -23,16 +23,6 @@ public abstract class ABaseFragment extends Fragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-
-        if (aeListener != null){
-            aeListener.onActivityEnabled((FragmentActivity) activity);
-            aeListener = null;
-        }
-    }
-
-    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
 

@@ -18,7 +18,7 @@ public class RecordDatabaseHelper extends SQLiteOpenHelper {
 
     private String TAG ="RecordDatabaseHelper";
 
-    public static final String DB_NAME = "Record";
+    static final String DB_NAME = "Record";
 
     private static final String CREATE_RECORD_DB = "create table Record ("
             + "id integer primary key autoincrement, "
@@ -30,7 +30,7 @@ public class RecordDatabaseHelper extends SQLiteOpenHelper {
             + "time integer, "
             + "date date )";
 
-    public RecordDatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    RecordDatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
 
         Map<String, Double> mostCategory = getMostIncomeCategory();
@@ -46,7 +46,6 @@ public class RecordDatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_RECORD_DB);
-        // Log.d(TAG, "onCreate: " + CREATE_RECORD_DB);
     }
 
     @Override
@@ -65,7 +64,6 @@ public class RecordDatabaseHelper extends SQLiteOpenHelper {
         values.put("date",bean.getDate());
         values.put("time",bean.getTimeStamp());
         db.insert(DB_NAME,null,values);
-        //Log.d(TAG,bean.getUuid()+"added "+values);
         values.clear();
     }
 
@@ -133,8 +131,6 @@ public class RecordDatabaseHelper extends SQLiteOpenHelper {
     public ArrayList<String> getAvailableMonths(){
         ArrayList<String> availableMonths = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
-        //String currentDate = DateUtil.getFormattedDate();
-        //availableMonths.add(currentDate.split("-")[1]);
 
         String sql = "select date from Record";
 
@@ -237,7 +233,6 @@ public class RecordDatabaseHelper extends SQLiteOpenHelper {
     }
 
     public Map<String, Double> getMostIncomeCategory(){
-        Map<String, Double> mostCategory = new HashMap<>();
         ArrayList<String> categories = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -251,13 +246,13 @@ public class RecordDatabaseHelper extends SQLiteOpenHelper {
                         categories.add(cursor.getString(0));
                     } while (cursor.moveToNext());
                 }
-                // Log.d(TAG, "getMostCategory: " + categories);
             }
         }catch (Exception e) {
             Log.d(TAG, "getMostCategory: exception: " + e.toString());
         }
 
         // 获取每个类别的当月总额
+        Map<String, Double> mostCategory = new HashMap<>();
         for (String month:getAvailableMonths()){
             for (String category : categories) {
                 if (!mostCategory.containsKey(category)){ // 结果集中不包含当前的键直接put
@@ -304,7 +299,6 @@ public class RecordDatabaseHelper extends SQLiteOpenHelper {
     }
 
     public Map<String, Double> getMostExpenditureCategory(){
-        Map<String, Double> mostCategory = new HashMap<>();
         ArrayList<String> categories = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -324,6 +318,7 @@ public class RecordDatabaseHelper extends SQLiteOpenHelper {
             Log.d(TAG, "getMostCategory: exception: " + e.toString());
         }
         // 获取每个类别的当月总额
+        Map<String, Double> mostCategory = new HashMap<>();
         for (String month:getAvailableMonths()){
             for (String category : categories) {
                 if (!mostCategory.containsKey(category)){

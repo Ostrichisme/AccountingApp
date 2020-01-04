@@ -1,5 +1,7 @@
 package com.matianyi.accountingapp.util;
 
+import android.annotation.SuppressLint;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -9,18 +11,18 @@ public class DateUtil {
 
     //unix time -> 11:11
     public static String getFormattedTime(long timeStamp){
-        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
         return formatter.format(new Date(timeStamp));
     }
 
     //2019-06-01
     public static String getFormattedDate(){
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         return formatter.format(new Date());
     }
 
     private static Date strToDate(String date){
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         try {
             return format.parse(date);
         } catch (ParseException e) {
@@ -43,7 +45,7 @@ public class DateUtil {
         calendar.setTime(strToDate(date));
         int monthIndex = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
-        return  months[monthIndex] + " "+String.valueOf(day);
+        return  months[monthIndex] + " "+ day;
     }
 
     public static String convertSqlMonthToCharacter(String sqlMonth){

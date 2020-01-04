@@ -28,14 +28,13 @@ public class MainFragment extends ABaseFragment implements AdapterView.OnItemLon
 
     private static final String TAG = "MainFragment";
     private View rootView;
-    private TextView textView;
     private ListView listView;
     private ListViewAdapter listViewAdapter;
 
     private LinkedList<RecordBean> records;
 
 
-    private String date = "";
+    private String date;
 
     // MainActivity activity;
 
@@ -43,8 +42,6 @@ public class MainFragment extends ABaseFragment implements AdapterView.OnItemLon
     public MainFragment(String date){
         this.date = date;
         records = GlobalUtil.getInstance().databaseHelper.readRecords(date);
-
-        // listViewAdapter = new ListViewAdapter(this.getActivity().getApplicationContext());
 
     }
 
@@ -60,17 +57,10 @@ public class MainFragment extends ABaseFragment implements AdapterView.OnItemLon
 
         records = GlobalUtil.getInstance().databaseHelper.readRecords(date);
 
-//        if (listViewAdapter == null){
-//            listViewAdapter = new ListViewAdapter(getActivity().getApplicationContext());
-//        }
-        // Log.d(TAG, "reload: " + records);
-
         getAvailableActivity(activity -> {
             listViewAdapter = new ListViewAdapter(activity.getApplicationContext());
             Log.d(TAG, "onActivityEnabled: " + activity + " context: " + activity.getApplicationContext());
         });
-
-
 
         listViewAdapter.setData(records);
         listView.setAdapter(listViewAdapter);
@@ -84,7 +74,7 @@ public class MainFragment extends ABaseFragment implements AdapterView.OnItemLon
     private void initView(){
 
 
-        textView = rootView.findViewById(R.id.day_text);
+        TextView textView = rootView.findViewById(R.id.day_text);
         listView = rootView.findViewById(R.id.listView);
         textView.setText(date);
         listViewAdapter = new ListViewAdapter(getContext());
@@ -123,8 +113,6 @@ public class MainFragment extends ABaseFragment implements AdapterView.OnItemLon
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-        //Log.d(TAG, "onItemLongClick: index " + position + " clicked.");
-        // show dialog
         showDialog(position);
         return false;
     }
@@ -138,26 +126,23 @@ public class MainFragment extends ABaseFragment implements AdapterView.OnItemLon
 
         builder.create();
 
-        builder.setItems(options, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Log.d(TAG, "onClick: " + which + options[which]);
-                // 0 -> remove, 1 -> edit
-                if (which == 0) {
-                    // remove
-                    String uuid = selectedRecords.getUuid();
-                    GlobalUtil.getInstance().databaseHelper.removeRecord(uuid);
-                    // refresh
-                    reload();
-                    GlobalUtil.getInstance().mainActivity.updateHeader();
-                } else if (which == 1) {
-                    // edit
-                    Intent intent = new Intent(getActivity(), AddRecordActivity.class);
-                    Bundle extra = new Bundle();
-                    extra.putSerializable("record", selectedRecords);
-                    intent.putExtras(extra);
-                    startActivityForResult(intent, 1);
-                }
+        builder.setItems(options, (dialog, which) -> {
+            Log.d(TAG, "onClick: " + which + options[which]);
+            // 0 -> remove, 1 -> edit
+            if (which == 0) {
+                // remove
+                String uuid = selectedRecords.getUuid();
+                GlobalUtil.getInstance().databaseHelper.removeRecord(uuid);
+                // refresh
+                reload();
+                GlobalUtil.getInstance().mainActivity.updateHeader();
+            } else {
+                // edit
+                Intent intent = new Intent(getActivity(), AddRecordActivity.class);
+                Bundle extra = new Bundle();
+                extra.putSerializable("record", selectedRecords);
+                intent.putExtras(extra);
+                startActivityForResult(intent, 1);
             }
         });
         builder.setNegativeButton("取消", null);

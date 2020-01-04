@@ -10,7 +10,6 @@ import com.matianyi.accountingapp.bean.CategoryResBean;
 import com.matianyi.accountingapp.activity.MainActivity;
 import com.matianyi.accountingapp.R;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 
 public class GlobalUtil {
@@ -27,15 +26,15 @@ public class GlobalUtil {
     public LinkedList<CategoryResBean> earnRes = new LinkedList<>();
 
     public static String[] ExpenditureCategories = {
-        "支出", "食物", "饮料", "百货", "购物", "个人",
-        "娱乐", "电影", "社交", "交通", "氪金", "话费",
-        "软件", "礼物", "房租", "旅行", "门票", "书籍", "医疗",
-        "转账"
+        "支出", "食物", "飲料", "百貨", "購物", "個人",
+        "娛樂", "電影", "社交", "交通", "課金", "電話費",
+        "軟體", "禮物", "房租", "旅行", "門票", "書籍", "醫療",
+        "轉帳"
     };
 
     public static String[] IncomeCategories = {
-        "收入", "报销", "薪水", "红包",
-        "兼职", "奖金", "投资"
+        "收入", "報銷", "薪水", "红包",
+        "兼職", "獎金", "投資"
     };
 
     private static int [] costIconResWhite = {
@@ -82,8 +81,6 @@ public class GlobalUtil {
             R.drawable.icon_medical,
             R.drawable.icon_transfer
     };
-    private static String[] costTitle = {"支出", "食物", "饮料","百货", "购物", "个人","娱乐","电影", "社交", "交通",
-            "氪金","话费","软件","礼物", "房租", "旅行","门票","书籍", "医疗","转账"};
 
     private static int[] earnIconResWhite = {
             R.drawable.icon_general_white,
@@ -103,7 +100,6 @@ public class GlobalUtil {
             R.drawable.icon_bonus,
             R.drawable.icon_investment};
 
-    private static String[] earnTitle = {"收入", "报销", "薪水","红包","兼职", "奖金","投资"};
 
     public Context getContext() {
         return context;
@@ -116,17 +112,17 @@ public class GlobalUtil {
     }
 
     public void addRes(){
-        for (int i=0;i<costTitle.length;i++){
+        for (int i=0;i<ExpenditureCategories.length;i++){
             CategoryResBean res = new CategoryResBean();
-            res.title = costTitle[i];
+            res.title = ExpenditureCategories[i];
             res.resBlack = costIconResBlack[i];
             res.resWhite = costIconResWhite[i];
             costRes.add(res);
         }
 
-        for (int i=0;i<earnTitle.length;i++){
+        for (int i=0;i<IncomeCategories.length;i++){
             CategoryResBean res = new CategoryResBean();
-            res.title = earnTitle[i];
+            res.title = IncomeCategories[i];
             res.resBlack = earnIconResBlack[i];
             res.resWhite = earnIconResWhite[i];
             earnRes.add(res);
@@ -144,7 +140,7 @@ public class GlobalUtil {
         return instance;
     }
 
-    public void setRes(LinkedList<CategoryResBean> costRes, LinkedList<CategoryResBean> earnRes){
+    private void setRes(LinkedList<CategoryResBean> costRes, LinkedList<CategoryResBean> earnRes){
         this.costRes = costRes;
         this.earnRes = earnRes;
     }
@@ -167,13 +163,6 @@ public class GlobalUtil {
         return costRes.get(0).resBlack;
     }
 
-    public String[] getExpenditureCategories(){
-        return ExpenditureCategories;
-    }
-
-    public String[] getIncomeCategories(){
-        return IncomeCategories;
-    }
 
     public void handleTextViewStyle(TextView textView){
         textView.setGravity(Gravity.END|Gravity.CENTER_VERTICAL);
@@ -182,10 +171,6 @@ public class GlobalUtil {
         Log.d(TAG, "handleTextViewStyle: textSize " + textView.getTextSize());
 
     }
-
-    public String getMaxValuesKey(HashMap<String, Double> map){
-        return "";
-    };
 
 
 }

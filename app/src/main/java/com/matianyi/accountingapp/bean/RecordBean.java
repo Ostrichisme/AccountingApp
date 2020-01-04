@@ -7,7 +7,6 @@ import java.util.UUID;
 
 public class RecordBean implements Serializable {
 
-    private static String TAG = "RecordBean";
 
     public enum RecordType{
         RECORD_TYPE_EXPENSE,RECORD_TYPE_INCOME
@@ -87,9 +86,7 @@ public class RecordBean implements Serializable {
 
     public RecordBean(){
         uuid = UUID.randomUUID().toString();
-        // Log.d(TAG, uuid);
         timeStamp = System.currentTimeMillis();
-        // Log.d(TAG, DateUtil.getFormattedDate()+ " " +DateUtil.getFormattedDate());
         date = DateUtil.getFormattedDate();
     }
 

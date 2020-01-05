@@ -48,12 +48,12 @@
                     android:text="- "
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@id/amount_text"/>
+                    android:layout_toStartOf="@id/amount_text"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/amount_text"
+                    android:layout_toEndOf="@id/amount_text"
                     android:text=" 元"
                     android:textColor="@android:color/holo_green_dark"
                     android:layout_alignParentBottom="true"
@@ -90,12 +90,12 @@
                     android:text="+ "
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@id/amount_income_text"/>
+                    android:layout_toStartOf="@id/amount_income_text"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/amount_income_text"
+                    android:layout_toEndOf="@id/amount_income_text"
                     android:text=" 元"
                     android:textColor="@android:color/black"
                     android:layout_alignParentBottom="true"

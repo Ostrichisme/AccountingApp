@@ -9,7 +9,7 @@
 
         <TextView
             android:id="@+id/day_text"
-            android:paddingLeft="15dp"
+            android:paddingStart="15dp"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:background="@drawable/date_background"
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="今日无记录"
+            android:text="今日無記錄"
             android:textSize="20dp" />
     </RelativeLayout>
 

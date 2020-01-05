@@ -12,9 +12,9 @@ import java.util.LinkedList;
 
 public class MainViewPagerAdapter extends FragmentPagerAdapter {
 
-    LinkedList<MainFragment> fragments = new LinkedList<>();
+    private LinkedList<MainFragment> fragments = new LinkedList<>();
 
-    LinkedList<String> dates = new LinkedList<>();
+    private LinkedList<String> dates = new LinkedList<>();
 
     public MainViewPagerAdapter(FragmentManager fm) {
         super(fm);

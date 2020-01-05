@@ -19,7 +19,6 @@ import java.util.LinkedList;
 
 public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
 
-    public static final String TAG = "RecyclerAdapter";
 
     private LayoutInflater mInflater;
 
